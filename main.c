@@ -158,6 +158,7 @@ int main()
     int choice;
     while(1)
     {
+       system("cls");
        printf("\nMENU\n");
        printf("----------------------------------------------------------------------------------------");
        printf("\n1.Add Contact\n2.Search Contact\n3.Update Contact\n4.Delete Contact\n5.Display\n6.Exit\n");
