@@ -178,6 +178,8 @@ int main()
 //             break;
        case 6:printf("Exited from the program\n");
               exit(0);
+       default:printf("Enter a valid choice\n");
+               break;
        }
     }
     return 0;
