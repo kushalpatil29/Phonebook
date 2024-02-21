@@ -45,15 +45,15 @@ CONTACT *add_contact()
 CONTACT *update_id(){
        system("cls");
        char crr_id[250],id[250];
-       if(start==NULL){
-              printf("Phone book is empty\n");
-              return start;
-       }
        printf("Enter the Mail id to be updated\n");
        scanf("%s",crr_id);
        printf("Enter the new mail id\n");
        scanf("%s",id);
        CONTACT *ptr;
+       if(start==NULL){
+              printf("Phone book is empty\n");
+              return start;
+       }
        else{
               ptr=start;
               while((ptr!=NULL) && (strcmp(ptr->email,crr_id)!=0)){
@@ -75,15 +75,15 @@ CONTACT *update_id(){
 CONTACT *update_name(){
        system("cls");
        char name[100],crr_name[100];
-       if(start==NULL){
-              printf("Phone book is empty\n");
-              return start;
-       }
        printf("Enter the Name to be updated:\n");
        scanf("%s",crr_name);
        printf("Enter the new Name:\n");
        scanf("%s",name);
        CONTACT *ptr;
+       if(start==NULL){
+              printf("Phone book is empty\n");
+              return start;
+       }
        else{
               ptr=start;
               while((ptr!=NULL) && (strcmp(ptr->name,crr_name)!=0)){
@@ -105,25 +105,25 @@ CONTACT *update_name(){
 CONTACT *update_phno(){
        system("cls");
        long long int num,crr_num;
-       if(start==NULL){
-              printf("Phone book is empty\n");
-              return start;
-       }
        printf("Enter the phone number to be updated:\n");
        scanf("%lld",&crr_num);
        printf("Enter the new phone number\n");
        scanf("%lld",&num);
        CONTACT *ptr;
+       if(start==NULL){
+              printf("Phone book is empty\n");
+              return start;
+       }
        else{
               ptr=start;
-              while((ptr!=NULL) && (ptr->ph!=crr_number)){
+              while((ptr!=NULL) && (ptr->ph!=crr_num)){
                      ptr=ptr->rl;
               }
               if(ptr==NULL){
                      printf("Please check the phone number once\n");
               }
               else{
-                     ptr->ph=number;
+                     ptr->ph=num;
                      printf("%s Phone number have been updated to %lld\n",ptr->name,ptr->ph);
               }  
        }
