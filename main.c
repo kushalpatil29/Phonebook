@@ -42,13 +42,18 @@ CONTACT *add_contact()
 }
 
 // CONTACT *search_contact();
-CONTACT *update_id(char crr_id[],char id[]){
+CONTACT *update_id(){
        system("cls");
-       CONTACT *ptr;
+       char crr_id[250],id[250];
        if(start==NULL){
               printf("Phone book is empty\n");
               return start;
        }
+       printf("Enter the Mail id to be updated\n");
+       scanf("%s",crr_id);
+       printf("Enter the new mail id\n");
+       scanf("%s",id);
+       CONTACT *ptr;
        else{
               ptr=start;
               while((ptr!=NULL) && (strcmp(ptr->email,crr_id)!=0)){
@@ -67,13 +72,18 @@ CONTACT *update_id(char crr_id[],char id[]){
        return start;
 }
 
-CONTACT *update_name(char crr_name[],char name[]){
+CONTACT *update_name(){
        system("cls");
-       CONTACT *ptr;
+       char name[100],crr_name[100];
        if(start==NULL){
               printf("Phone book is empty\n");
               return start;
        }
+       printf("Enter the Name to be updated:\n");
+       scanf("%s",crr_name);
+       printf("Enter the new Name:\n");
+       scanf("%s",name);
+       CONTACT *ptr;
        else{
               ptr=start;
               while((ptr!=NULL) && (strcmp(ptr->name,crr_name)!=0)){
@@ -92,13 +102,18 @@ CONTACT *update_name(char crr_name[],char name[]){
        return start;
 }
 
-CONTACT *update_phno(long long int crr_number,long long int number){
+CONTACT *update_phno(){
        system("cls");
-       CONTACT *ptr;
+       long long int num,crr_num;
        if(start==NULL){
               printf("Phone book is empty\n");
               return start;
        }
+       printf("Enter the phone number to be updated:\n");
+       scanf("%lld",&crr_num);
+       printf("Enter the new phone number\n");
+       scanf("%lld",&num);
+       CONTACT *ptr;
        else{
               ptr=start;
               while((ptr!=NULL) && (ptr->ph!=crr_number)){
@@ -118,34 +133,19 @@ CONTACT *update_phno(long long int crr_number,long long int number){
 CONTACT *update_contact(){
        system("cls");
        printf("What would you like to update\n");
-       printf("1.Name\n2.Phone no.\n3.Email id\n");
+       printf("1.Name\n2.Phone no.\n3.Email id\n4.Exit\n");
        int ch;
-       while(1){
-              printf("Enter your choice\n");
-              scanf("%d",&ch);
-              switch(ch){
-                     case 1:char name[100],crr_name[100];
-                            printf("Enter the Name to be updated:\n");
-                            gets(crr_name);
-                            printf("Enter the new Name:\n");
-                            gets(name);
-                            update_name(crr_name,name);
-                            break;
-                     case 2:long long int num,crr_num;
-                            printf("Enter the phone number to be updated:\n");
-                            scanf("%lld",&crr_num);
-                            printf("Enter the new phone number\n");
-                            scanf("%lld",&num);
-                            update_phno(crr_num,num);
-                            break; 
-                     case 3:char crr_id[250],id[250];
-                            printf("Enter the Mail id to be updated\n");
-                            gets(crr_id);
-                            printf("Enter the new mail id\n");
-                            gets(id);
-                            update_id(crr_id,id);
-                            break;
-              }
+       printf("Enter your choice\n");
+       scanf("%d",&ch);
+       switch(ch){
+              case 1:update_name();
+                     break;
+              case 2:
+                     update_phno(crr_num,num);
+                     break; 
+              case 3:
+                     update_id(crr_id,id);
+                     break;
        }         
        return start;
 }
@@ -156,29 +156,29 @@ CONTACT *update_contact(){
 int main()
 {
     int choice;
-    printf("\nMENU\n");
-    printf("----------------------------------------------------------------------------------------");
-    printf("1.Add Contact\n2.Search Contact\n3.Update Contact\n4.Delete Contact\n5.Display\n6.Exit\n");
-    printf("----------------------------------------------------------------------------------------\n");
     while(1)
     {
-        printf("Enter Your Choice: ");
-        scanf("%d",&choice);
-        switch(choice)
-        {
-            case 1: start = add_contact();
-                   break;
-       //      case 2:start = search_contact();
-       //             break;
-            case 3:start = update_contact();
-                   break;
-       //      case 4:start = delete_contact();
-       //             break;
-       //      case 5:display();
-       //             break;
-            case 6:printf("Exited from the program\n");
-                   exit(0);
-        }
+       printf("\nMENU\n");
+       printf("----------------------------------------------------------------------------------------");
+       printf("\n1.Add Contact\n2.Search Contact\n3.Update Contact\n4.Delete Contact\n5.Display\n6.Exit\n");
+       printf("----------------------------------------------------------------------------------------\n");
+       printf("Enter Your Choice: ");
+       scanf("%d",&choice);
+       switch(choice)
+       {
+       case 1: start = add_contact();
+              break;
+//      case 2:start = search_contact();
+//             break;
+       case 3:start = update_contact();
+              break;
+//      case 4:start = delete_contact();
+//             break;
+//      case 5:display();
+//             break;
+       case 6:printf("Exited from the program\n");
+              exit(0);
+       }
     }
     return 0;
 }
