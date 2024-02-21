@@ -141,10 +141,10 @@ CONTACT *update_contact(){
               case 1:update_name();
                      break;
               case 2:
-                     update_phno(crr_num,num);
+                     update_phno();
                      break; 
               case 3:
-                     update_id(crr_id,id);
+                     update_id();
                      break;
        }         
        return start;
