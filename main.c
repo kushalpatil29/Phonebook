@@ -107,9 +107,14 @@ CONTACT *update_phno(){
        long long int num,crr_num;
        printf("Enter the phone number to be updated:\n");
        scanf("%lld",&crr_num);
+       // if(len(crr_num)!=10){
+       //        printf("Enter a valid phone number\n");
+       //        break;
+       // }
        printf("Enter the new phone number\n");
        scanf("%lld",&num);
        CONTACT *ptr;
+
        if(start==NULL){
               printf("Phone book is empty\n");
               return start;
@@ -158,7 +163,7 @@ int main()
     int choice;
     while(1)
     {
-       system("cls");
+       // system("cls");
        printf("\nMENU\n");
        printf("----------------------------------------------------------------------------------------");
        printf("\n1.Add Contact\n2.Search Contact\n3.Update Contact\n4.Delete Contact\n5.Display\n6.Exit\n");
