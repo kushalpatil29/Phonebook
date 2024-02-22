@@ -60,10 +60,14 @@ CONTACT *search_id(){
                      printf("No matches found\n");
               }
               else{
-                    printf("Contact Details:");
-                    printf("%s",ptr->name);
-                    printf("%lld",ptr->ph);
-                    printf("%s",ptr->email);
+                    printf("Contact Details:\n");
+                    printf("------------------------------------------------------\n");
+                    printf("%-30s%-20s%-30s\n", "Name", "Phone Number", "Email");
+                    printf("------------------------------------------------------\n");                     
+              //       printf("%s",ptr->name);
+              //       printf("%lld",ptr->ph);
+              //       printf("%s",ptr->email);
+              printf("%-30s%-20lld%-30s\n", ptr->name, ptr->ph, ptr->email);
               }
        }
        return start; 
@@ -88,10 +92,14 @@ CONTACT *search_name(){
                      printf("No matches found\n");
               }
               else{
-                    printf("Contact Details:");
-                    printf("%s",ptr->name);
-                    printf("%lld",ptr->ph);
-                    printf("%s",ptr->email);
+                    printf("Contact Details:\n");
+                    printf("------------------------------------------------------\n");
+                    printf("%-30s%-20s%-30s\n", "Name", "Phone Number", "Email");
+                    printf("------------------------------------------------------\n");  
+              //       printf("%s",ptr->name);
+              //       printf("%lld",ptr->ph);
+              //       printf("%s",ptr->email);
+              printf("%-30s%-20lld%-30s\n", ptr->name, ptr->ph, ptr->email);
               }  
        }
        return start;
@@ -116,10 +124,14 @@ CONTACT *search_phno(){
                      printf("No matches found\n");
               }
               else{
-                    printf("Contact Details:");
-                    printf("%s",ptr->name);
-                    printf("%lld",ptr->ph);
-                    printf("%s",ptr->email);
+                    printf("Contact Details:\n");
+                    printf("------------------------------------------------------\n");
+                    printf("%-30s%-20s%-30s\n", "Name", "Phone Number", "Email");
+                    printf("------------------------------------------------------\n"); 
+              //       printf("%s",ptr->name);
+              //       printf("%lld",ptr->ph);
+              //       printf("%s",ptr->email);
+                    printf("%-30s%-20lld%-30s\n", ptr->name, ptr->ph, ptr->email);
               }  
        }
        return start;
@@ -283,9 +295,9 @@ void display_contacts() {
 int main()
 {
     int choice;
+    system("cls");
     while(1)
     {
-       // system("cls");
        printf("\nMENU\n");
        printf("----------------------------------------------------------------------------------------");
        printf("\n1.Add Contact\n2.Search Contact\n3.Update Contact\n4.Delete Contact\n5.Display\n6.Exit\n");
@@ -296,14 +308,14 @@ int main()
        {
        case 1: start = add_contact();
               break;
-//      case 2:start = search_contact();
-//             break;
+      case 2:start = search_contact();
+             break;
        case 3:start = update_contact();
               break;
 //      case 4:start = delete_contact();
 //             break;
-//      case 5:display();
-//             break;
+      case 5:display_contacts();
+             break;
        case 6:printf("Exited from the program\n");
               exit(0);
        default:printf("Enter a valid choice\n");
@@ -311,5 +323,4 @@ int main()
        }
     }
     return 0;
-}
 }
