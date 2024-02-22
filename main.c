@@ -41,7 +41,6 @@ CONTACT *add_contact()
     return start;
 }
 
-<<<<<<< HEAD
 CONTACT *search_id(){
        system("cls");
        char id[250];
@@ -144,13 +143,9 @@ CONTACT *search_contact(){
        return start;
 }
 
-CONTACT *update_id(char crr_id[],char id[]){
-=======
-// CONTACT *search_contact();
 CONTACT *update_id(){
->>>>>>> 0addb55f88c5bb19b2e06cece6edb4059a0bb311
        system("cls");
-       char crr_id[250],id[250];
+       char crr_id[150],id[250];
        printf("Enter the Mail id to be updated\n");
        scanf("%s",crr_id);
        printf("Enter the new mail id\n");
@@ -261,8 +256,29 @@ CONTACT *update_contact(){
        return start;
 }
 
-// CONTACT *delete_contact();
-// void display();
+/*
+ * Function to display all contacts stored in the phone book.
+ * If the phone book is empty, it prints a message indicating so.
+ * If there are contacts, it prints each contact's name, phone number, and email.
+ */
+void display_contacts() {
+    system("cls"); // Clear the screen
+    if (start == NULL) {
+        printf("Phone book is empty\n");
+        return;
+    }
+    printf("Contacts in the phone book:\n");
+    printf("----------------------------------------------------------------------------------------\n");
+    printf("%-30s%-20s%-30s\n", "Name", "Phone Number", "Email"); // Header for contact details
+    printf("----------------------------------------------------------------------------------------\n");
+    CONTACT *ptr = start;
+    while (ptr != NULL) {
+        printf("%-30s%-20lld%-30s\n", ptr->name, ptr->ph, ptr->email); // Print each contact's details
+        ptr = ptr->rl; // Move to the next contact
+    }
+    printf("----------------------------------------------------------------------------------------\n");
+}
+
 
 int main()
 {
