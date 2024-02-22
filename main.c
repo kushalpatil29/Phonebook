@@ -41,8 +41,114 @@ CONTACT *add_contact()
     return start;
 }
 
+<<<<<<< HEAD
+CONTACT *search_id(){
+       system("cls");
+       char id[250];
+       printf("Enter the Mail id to be searched:\n");
+       scanf("%s",id);
+       CONTACT *ptr;
+       if(start==NULL){
+              printf("Phone book is empty\n");
+              return start;
+       }
+       else{
+              ptr=start;
+              while((ptr!=NULL) && (strcmp(ptr->email,id)!=0)){
+                     ptr=ptr->rl;
+              }
+              if(ptr==NULL){
+                     printf("No matches found\n");
+              }
+              else{
+                    printf("Contact Details:");
+                    printf("%s",ptr->name);
+                    printf("%lld",ptr->ph);
+                    printf("%s",ptr->email);
+              }
+       }
+       return start; 
+}
+       
+CONTACT *search_name(){
+       system("cls");
+       char name[100];
+       printf("Enter the Name to be searched:\n");
+       scanf("%s",name);
+       CONTACT *ptr;
+       if(start==NULL){
+              printf("Phone book is empty\n");
+              return start;
+       }
+       else{
+              ptr=start;
+              while((ptr!=NULL) && (strcmp(ptr->name,name)!=0)){
+                     ptr=ptr->rl;
+              }
+              if(ptr==NULL){
+                     printf("No matches found\n");
+              }
+              else{
+                    printf("Contact Details:");
+                    printf("%s",ptr->name);
+                    printf("%lld",ptr->ph);
+                    printf("%s",ptr->email);
+              }  
+       }
+       return start;
+}
+
+CONTACT *search_phno(){
+       system("cls");
+       long long int num;
+       printf("Enter the phone number to be searched:\n");
+       scanf("%lld",num);
+       CONTACT *ptr;
+       if(start==NULL){
+              printf("Phone book is empty\n");
+              return start;
+       }
+       else{
+              ptr=start;
+              while((ptr!=NULL) && (ptr->ph!=num)){
+                     ptr=ptr->rl;
+              }
+              if(ptr==NULL){
+                     printf("No matches found\n");
+              }
+              else{
+                    printf("Contact Details:");
+                    printf("%s",ptr->name);
+                    printf("%lld",ptr->ph);
+                    printf("%s",ptr->email);
+              }  
+       }
+       return start;
+}
+
+CONTACT *search_contact(){
+       system("cls");
+       printf("How would you like to search\n");
+       printf("1.Name\n2.Phone no.\n3.Email id\n");
+       int ch;
+       printf("Enter your choice\n");
+       scanf("%d",&ch);
+       switch(ch){
+              case 1:search_name();
+                     break;
+              case 2:search_phno();
+                     break; 
+              case 3:search_id();
+                     break;
+       }         
+       return start;
+}
+
+CONTACT *update_id(char crr_id[],char id[]){
+=======
 // CONTACT *search_contact();
 CONTACT *update_id(){
+>>>>>>> 0addb55f88c5bb19b2e06cece6edb4059a0bb311
        system("cls");
        char crr_id[250],id[250];
        printf("Enter the Mail id to be updated\n");
