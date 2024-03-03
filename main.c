@@ -288,7 +288,7 @@ CONTACT *delete_name(){
        else 
        {
              ptr=start;
-             while((ptr!= NULL)&&(ptr->name != keyname))
+             while((ptr!= NULL)&&strcmp((ptr->name, keyname)!=0))
              {
                   temp=ptr;
                   ptr= ptr->rl;
@@ -355,7 +355,7 @@ CONTACT *delete_phno(){
 CONTACT *delete_contact(){
        system("cls");
        printf("What would you like to delete\n");
-       printf("1.Name\n2.Phone no.\n3.Exit\n");
+       printf("1.Name\n2.Phone no.\n");
        int ch;
        printf("Enter your choice\n");
        scanf("%d",&ch);
@@ -365,8 +365,6 @@ CONTACT *delete_contact(){
               case 2:
                      delete_phno();
                      break; 
-              case 3:
-                     exit(0);
        }         
        return start;
 }
