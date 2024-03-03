@@ -268,6 +268,110 @@ CONTACT *update_contact(){
        return start;
 }
 
+CONTACT *delete_name(){
+       system("cls");
+       char keyname[100];
+       printf("Enter the Name to be deleted:\n");
+       scanf("%s",keyname);
+       CONTACT *ptr,*temp;
+       if (start == NULL){
+              printf("Phonebook is Empty\n");
+              return start;
+       }
+       else if(start->name == keyname )
+       {
+                  ptr=start;
+                  start = start->rl;
+                  printf("Item Deleted: %s\n", ptr->name); 
+                  free(ptr);
+       } 
+       else 
+       {
+             ptr=start;
+             while((ptr!= NULL)&&(ptr->name != keyname))
+             {
+                  temp=ptr;
+                  ptr= ptr->rl;
+              }
+              if(ptr == NULL)  // Searched till end of phonebook
+                      printf("Invalid Contact Name\n");
+              else
+              {
+                  temp->rl = ptr->rl;
+                  if(ptr->rl != NULL)
+                  {
+                     (ptr->rl)->ll = temp;
+                  }
+                  printf("Item deleted:  %s\n",ptr->name);   
+                  free(ptr);
+              }
+       }
+       return start;   
+
+}
+
+CONTACT *delete_phno(){
+       system("cls");
+       long long int num;
+       printf("Enter the phone number to be deleted:\n");
+       scanf("%lld",&num);
+       CONTACT *ptr,*temp;
+       if (start == NULL){
+              printf("Phonebook is Empty\n");
+              return start;
+       }
+       else if(start->ph == num )
+       {
+                  ptr=start;
+                  start = start->rl;
+                  printf("Item Deleted: %lld\n", ptr->ph); 
+                  free(ptr);
+       } 
+       else 
+       {
+             ptr=start;
+             while((ptr!= NULL)&&(ptr->ph != num ))
+             {
+                  temp=ptr;
+                  ptr= ptr->rl;
+              }
+              if(ptr == NULL)  // Searched till end of phonebook
+                      printf("Invalid Contact Name\n");
+              else
+              {
+                  temp->rl = ptr->rl;
+                  if(ptr->rl != NULL)
+                  {
+                     (ptr->rl)->ll = temp;
+                  }
+                  printf("Item deleted:  %lld\n",ptr->ph);   
+                  free(ptr);
+              }
+       }
+       return start;   
+
+}
+       
+CONTACT *delete_contact(){
+       system("cls");
+       printf("What would you like to delete\n");
+       printf("1.Name\n2.Phone no.\n3.Exit\n");
+       int ch;
+       printf("Enter your choice\n");
+       scanf("%d",&ch);
+       switch(ch){
+              case 1:delete_name();
+                     break;
+              case 2:
+                     delete_phno();
+                     break; 
+              case 3:
+                     exit(0);
+       }         
+       return start;
+}
+
+
 /*
  * Function to display all contacts stored in the phone book.
  * If the phone book is empty, it prints a message indicating so.
