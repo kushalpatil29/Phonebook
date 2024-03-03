@@ -85,9 +85,6 @@ CONTACT *search_id()
                      printf("------------------------------------------------------\n");
                      printf("%-30s%-20s%-30s\n", "Name", "Phone Number", "Email");
                      printf("------------------------------------------------------\n");
-                     //       printf("%s",ptr->name);
-                     //       printf("%lld",ptr->ph);
-                     //       printf("%s",ptr->email);
                      printf("%-30s%-20lld%-30s\n", ptr->name, ptr->ph, ptr->email);
               }
        }
@@ -109,7 +106,7 @@ CONTACT *search_name()
        else
        {
               ptr = start;
-              while ((ptr != NULL) && (strcmp(ptr->name, name) != 0))
+              while ((ptr != NULL) && (strcmp(strlwr(ptr->name), strlwr(name)) != 0))
               {
                      ptr = ptr->rl;
               }
