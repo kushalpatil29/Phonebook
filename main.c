@@ -312,8 +312,8 @@ int main()
              break;
        case 3:start = update_contact();
               break;
-//      case 4:start = delete_contact();
-//             break;
+     case 4:start = delete_contact();
+            break;
       case 5:display_contacts();
              break;
        case 6:printf("Exited from the program\n");
