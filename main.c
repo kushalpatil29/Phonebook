@@ -339,7 +339,7 @@ CONTACT *delete_name()
        else
        {
               ptr = start;
-              while ((ptr != NULL) && strcmp((ptr->name, keyname) != 0))
+              while ((ptr != NULL) && strcmp(ptr->name, keyname) != 0)
               {
                      temp = ptr;
                      ptr = ptr->rl;
@@ -433,7 +433,7 @@ CONTACT *delete_contact()
  */
 void display_contacts()
 {
-       system("cls"); // Clear the screen
+       system("cls"); 
        if (start == NULL)
        {
               printf("Phone book is empty\n");
@@ -441,13 +441,13 @@ void display_contacts()
        }
        printf("Contacts in the phone book:\n");
        printf("----------------------------------------------------------------------------------------\n");
-       printf("%-30s%-20s%-30s\n", "Name", "Phone Number", "Email"); // Header for contact details
+       printf("%-30s%-20s%-30s\n", "Name", "Phone Number", "Email"); 
        printf("----------------------------------------------------------------------------------------\n");
        CONTACT *ptr = start;
        while (ptr != NULL)
        {
-              printf("%-30s%-20lld%-30s\n", ptr->name, ptr->ph, ptr->email); // Print each contact's details
-              ptr = ptr->rl;                                                 // Move to the next contact
+              printf("%-30s%-20lld%-30s\n", ptr->name, ptr->ph, ptr->email); 
+              ptr = ptr->rl;                                                
        }
        printf("----------------------------------------------------------------------------------------\n");
 }
