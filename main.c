@@ -22,8 +22,20 @@ CONTACT *add_contact()
        new_contact->rl = NULL;
        printf("Enter Name:");
        scanf("%s", new_contact->name);
+jump:
        printf("Enter Phone Number:");
        scanf("%lld", &new_contact->ph);
+       long long n = new_contact->ph, count = 0;
+       while (n > 0)
+       {
+              n = n / 10;
+              count = count + 1;
+       }
+       if (count != 10)
+       {
+              printf("Invalid Number\nEnter again\n");
+              goto jump;
+       }
        printf("Enter Mail Id:");
        scanf("%s", new_contact->email);
        if (start == NULL)
@@ -124,8 +136,19 @@ CONTACT *search_phno()
 {
        system("cls");
        long long int num;
+jump2:
        printf("Enter the phone number to be searched:\n");
        scanf("%lld", &num);
+       long long n = num, count = 0;
+       while (n > 0)
+       {
+              n = n / 10;
+              count = count + 1;
+       }
+       if(count !=10){
+              printf("Enter Valid Number\n");
+              goto jump2;
+       }
        CONTACT *ptr;
        if (start == NULL)
        {
@@ -259,12 +282,19 @@ CONTACT *update_phno()
 {
        system("cls");
        long long int num, crr_num;
+jump3:
        printf("Enter the phone number to be updated:\n");
        scanf("%lld", &crr_num);
-       // if(len(crr_num)!=10){
-       //        printf("Enter a valid phone number\n");
-       //        break;
-       // }
+       long long n = crr_num, count = 0;
+       while (n > 0)
+       {
+              n = n / 10;
+              count = count + 1;
+       }
+       if(count !=10){
+              printf("Enter Valid Number\n");
+              goto jump3;
+       }
        printf("Enter the new phone number\n");
        scanf("%lld", &num);
        CONTACT *ptr;
@@ -364,8 +394,19 @@ CONTACT *delete_phno()
 {
        system("cls");
        long long int num;
+jump4:
        printf("Enter the phone number to be deleted:\n");
        scanf("%lld", &num);
+       long long n = num, count = 0;
+       while (n > 0)
+       {
+              n = n / 10;
+              count = count + 1;
+       }
+       if(count !=10){
+              printf("Enter Valid Number\n");
+              goto jump4;
+       }
        CONTACT *ptr, *temp;
        if (start == NULL)
        {
@@ -431,9 +472,38 @@ CONTACT *delete_contact()
  * If the phone book is empty, it prints a message indicating so.
  * If there are contacts, it prints each contact's name, phone number, and email.
  */
+
+void bubbleSort(CONTACT *head)
+{
+       int swapped;
+       CONTACT *ptr1;
+       CONTACT *lptr = NULL;
+       if (head == NULL)
+              return;
+
+       do
+       {
+              swapped = 0;
+              ptr1 = head;
+              while (ptr1->rl != lptr)
+              {
+                     if (strcmp(ptr1->name, ptr1->rl->name) > 0)
+                     {
+                            char temp[30];
+                            strcpy(temp, ptr1->name);
+                            strcpy(ptr1->name, ptr1->rl->name);
+                            strcpy(ptr1->rl->name, temp);
+                            swapped = 1;
+                     }
+                     ptr1 = ptr1->rl;
+              }
+              lptr = ptr1;
+       } while (swapped);
+}
+
 void display_contacts()
 {
-       system("cls"); 
+       system("cls");
        if (start == NULL)
        {
               printf("Phone book is empty\n");
@@ -441,13 +511,14 @@ void display_contacts()
        }
        printf("Contacts in the phone book:\n");
        printf("----------------------------------------------------------------------------------------\n");
-       printf("%-30s%-20s%-30s\n", "Name", "Phone Number", "Email"); 
+       printf("%-30s%-20s%-30s\n", "Name", "Phone Number", "Email");
        printf("----------------------------------------------------------------------------------------\n");
        CONTACT *ptr = start;
+       bubbleSort(ptr);
        while (ptr != NULL)
        {
-              printf("%-30s%-20lld%-30s\n", ptr->name, ptr->ph, ptr->email); 
-              ptr = ptr->rl;                                                
+              printf("%-30s%-20lld%-30s\n", ptr->name, ptr->ph, ptr->email);
+              ptr = ptr->rl;
        }
        printf("----------------------------------------------------------------------------------------\n");
 }
