@@ -478,6 +478,16 @@ void bubbleSort(CONTACT *head)
                             strcpy(temp, ptr1->name);
                             strcpy(ptr1->name, ptr1->rl->name);
                             strcpy(ptr1->rl->name, temp);
+
+                            long long int temp1;
+                            temp1 = ptr1 -> ph;
+                            ptr1 -> ph = ptr1 -> rl -> ph;
+                            ptr1 -> rl -> ph = temp1;
+
+                            char temp3[50];
+                            strcpy(temp3, ptr1->email);
+                            strcpy(ptr1->email, ptr1->rl->email);
+                            strcpy(ptr1->rl->email, temp3);
                             swapped = 1;
                      }
                      ptr1 = ptr1->rl;
