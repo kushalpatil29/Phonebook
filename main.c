@@ -120,9 +120,6 @@ CONTACT *search_name()
                      printf("------------------------------------------------------\n");
                      printf("%-30s%-20s%-30s\n", "Name", "Phone Number", "Email");
                      printf("------------------------------------------------------\n");
-                     //       printf("%s",ptr->name);
-                     //       printf("%lld",ptr->ph);
-                     //       printf("%s",ptr->email);
                      printf("%-30s%-20lld%-30s\n", ptr->name, ptr->ph, ptr->email);
               }
        }
@@ -169,9 +166,6 @@ jump2:
                      printf("------------------------------------------------------\n");
                      printf("%-30s%-20s%-30s\n", "Name", "Phone Number", "Email");
                      printf("------------------------------------------------------\n");
-                     //       printf("%s",ptr->name);
-                     //       printf("%lld",ptr->ph);
-                     //       printf("%s",ptr->email);
                      printf("%-30s%-20lld%-30s\n", ptr->name, ptr->ph, ptr->email);
               }
        }
@@ -371,7 +365,7 @@ CONTACT *delete_name()
                      temp = ptr;
                      ptr = ptr->rl;
               }
-              if (ptr == NULL) // Searched till end of phonebook
+              if (ptr == NULL)
                      printf("Invalid Contact Name\n");
               else
               {
@@ -425,7 +419,7 @@ jump4:
                      temp = ptr;
                      ptr = ptr->rl;
               }
-              if (ptr == NULL) // Searched till end of phonebook
+              if (ptr == NULL) 
                      printf("Invalid Contact Name\n");
               else
               {
@@ -463,12 +457,6 @@ CONTACT *delete_contact()
        }
        return start;
 }
-
-/*
- * Function to display all contacts stored in the phone book.
- * If the phone book is empty, it prints a message indicating so.
- * If there are contacts, it prints each contact's name, phone number, and email.
- */
 
 void bubbleSort(CONTACT *head)
 {
