@@ -77,7 +77,7 @@ CONTACT *search_id()
               }
               if (ptr == NULL)
               {
-                     printf("No matches found\n");
+                     printf("Contact not found!!\n");
               }
               else
               {
@@ -139,7 +139,8 @@ jump2:
               n = n / 10;
               count = count + 1;
        }
-       if(count !=10){
+       if (count != 10)
+       {
               printf("Enter Valid Number\n");
               goto jump2;
        }
@@ -158,7 +159,7 @@ jump2:
               }
               if (ptr == NULL)
               {
-                     printf("No matches found\n");
+                     printf("Contact not found!!\n");
               }
               else
               {
@@ -190,6 +191,9 @@ CONTACT *search_contact()
               break;
        case 3:
               search_id();
+              break;
+       default:
+              printf("Enter a valid input\n");
               break;
        }
        return start;
@@ -249,7 +253,7 @@ CONTACT *update_name()
        else
        {
               ptr = start;
-              while ((ptr != NULL) && (strcmp(ptr->name, crr_name) != 0))
+              while ((ptr != NULL) && (strcmp((strlwr(ptr->name)), (strlwr(crr_name)))!= 0))
               {
                      ptr = ptr->rl;
               }
@@ -282,12 +286,26 @@ jump3:
               n = n / 10;
               count = count + 1;
        }
-       if(count !=10){
+       if (count != 10)
+       {
               printf("Enter Valid Number\n");
               goto jump3;
        }
+jump4:
        printf("Enter the new phone number\n");
        scanf("%lld", &num);
+       int ctr=0;
+       long long int  n2=num;
+       while (n2 > 0)
+       {
+              n2 = n2 / 10;
+              ctr = ctr + 1;
+       }
+       if (ctr != 10)
+       {
+              printf("Enter Valid Number\n");
+              goto jump4;
+       }
        CONTACT *ptr;
 
        if (start == NULL)
@@ -334,6 +352,9 @@ CONTACT *update_contact()
        case 3:
               update_id();
               break;
+       default:
+              printf("Enter a valid option\n");
+              break;
        }
        return start;
 }
@@ -356,6 +377,7 @@ CONTACT *delete_name()
               start = start->rl;
               printf("Item Deleted: %s\n", ptr->name);
               free(ptr);
+              printf("Contact Deleted successfully!!\n");
        }
        else
        {
@@ -366,7 +388,7 @@ CONTACT *delete_name()
                      ptr = ptr->rl;
               }
               if (ptr == NULL)
-                     printf("Invalid Contact Name\n");
+                     printf("Contact not found!!\n");
               else
               {
                      temp->rl = ptr->rl;
@@ -376,6 +398,52 @@ CONTACT *delete_name()
                      }
                      printf("Item deleted:  %s\n", ptr->name);
                      free(ptr);
+                     printf("Contact Deleted successfully!!\n");
+              }
+       }
+       return start;
+}
+
+CONTACT *delete_id()
+{
+       system("cls");
+       char keyid[100];
+       printf("Enter the id to be deleted:\n");
+       scanf("%s", keyid);
+       CONTACT *ptr, *temp;
+       if (start == NULL)
+       {
+              printf("Phonebook is Empty\n");
+              return start;
+       }
+       else if (strcmp(start->email, keyid) == 0)
+       {
+              ptr = start;
+              start = start->rl;
+              printf("Item Deleted: %s\n", ptr->email);
+              free(ptr);
+              printf("Contact Deleted successfully!!\n");
+       }
+       else
+       {
+              ptr = start;
+              while ((ptr != NULL) && strcmp(ptr->email, keyid) != 0)
+              {
+                     temp = ptr;
+                     ptr = ptr->rl;
+              }
+              if (ptr == NULL)
+                     printf("Contact not found!!\n");
+              else
+              {
+                     temp->rl = ptr->rl;
+                     if (ptr->rl != NULL)
+                     {
+                            (ptr->rl)->ll = temp;
+                     }
+                     printf("Item deleted:  %s\n", ptr->email);
+                     free(ptr);
+                     printf("Contact Deleted successfully!!\n");
               }
        }
        return start;
@@ -394,7 +462,8 @@ jump4:
               n = n / 10;
               count = count + 1;
        }
-       if(count !=10){
+       if (count != 10)
+       {
               printf("Enter Valid Number\n");
               goto jump4;
        }
@@ -419,7 +488,7 @@ jump4:
                      temp = ptr;
                      ptr = ptr->rl;
               }
-              if (ptr == NULL) 
+              if (ptr == NULL)
                      printf("Invalid Contact Name\n");
               else
               {
@@ -430,6 +499,7 @@ jump4:
                      }
                      printf("Item deleted:  %lld\n", ptr->ph);
                      free(ptr);
+                     printf("Contact Deleted successfully!!\n");
               }
        }
        return start;
@@ -439,7 +509,7 @@ CONTACT *delete_contact()
 {
        system("cls");
        printf("What would you like to delete\n");
-       printf("1.Name\n2.Phone no.\n");
+       printf("1.Name\n2.Phone no.\n3.Mail id\n");
        int ch;
        printf("Enter your choice\n");
        scanf("%d", &ch);
@@ -451,6 +521,9 @@ CONTACT *delete_contact()
        case 2:
               delete_phno();
               break;
+       case 3:
+              delete_id();
+              break;
        default:
               printf("Please Choose a valid option\n");
               break;
@@ -458,18 +531,18 @@ CONTACT *delete_contact()
        return start;
 }
 
-void bubbleSort(CONTACT *head)
+void bubbleSort(CONTACT *start)
 {
        int swapped;
        CONTACT *ptr1;
        CONTACT *lptr = NULL;
-       if (head == NULL)
+       if (start == NULL)
               return;
 
        do
        {
               swapped = 0;
-              ptr1 = head;
+              ptr1 = start;
               while (ptr1->rl != lptr)
               {
                      if (strcmp(ptr1->name, ptr1->rl->name) > 0)
@@ -480,9 +553,9 @@ void bubbleSort(CONTACT *head)
                             strcpy(ptr1->rl->name, temp);
 
                             long long int temp1;
-                            temp1 = ptr1 -> ph;
-                            ptr1 -> ph = ptr1 -> rl -> ph;
-                            ptr1 -> rl -> ph = temp1;
+                            temp1 = ptr1->ph;
+                            ptr1->ph = ptr1->rl->ph;
+                            ptr1->rl->ph = temp1;
 
                             char temp3[50];
                             strcpy(temp3, ptr1->email);
@@ -548,7 +621,7 @@ int main()
                      display_contacts();
                      break;
               case 6:
-                     printf("Exited from the program\n");
+                     printf("Exited from the program\nThank You\n");
                      exit(0);
               default:
                      printf("Enter a valid choice\n");
