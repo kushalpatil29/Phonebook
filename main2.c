@@ -20,12 +20,14 @@ CONTACT *add_contact()
        new_contact = (CONTACT *)malloc(sizeof(struct contact));
        new_contact->ll = NULL;
        new_contact->rl = NULL;
+       char name[100], email[250];
+       long long int ph;
        printf("Enter Name:");
-       scanf("%s", new_contact->name);
+       scanf("%s", name);
 jump:
        printf("Enter Phone Number:");
-       scanf("%lld", &new_contact->ph);
-       long long n = new_contact->ph, count = 0;
+       scanf("%lld", &ph);
+       long long n = ph, count = 0;
        while (n > 0)
        {
               n = n / 10;
@@ -36,8 +38,13 @@ jump:
               printf("Invalid Number\nEnter again\n");
               goto jump;
        }
+
        printf("Enter Mail Id:");
-       scanf("%s", new_contact->email);
+       scanf("%s", email);
+       strcpy(new_contact->name, name);
+       strcpy(new_contact->email, email);
+       new_contact->ph = ph;
+
        if (start == NULL)
        {
               start = new_contact;
@@ -47,8 +54,20 @@ jump:
               ptr = start;
               while (ptr->rl != NULL)
               {
+                     if (strcmp(ptr->name, name) == 0 && ptr->ph == ph)
+                     {
+                            printf("Contact already exists!!\n");
+                            return start;
+                     }
                      ptr = ptr->rl;
               }
+
+              if (strcmp(ptr->name, name) == 0 && ptr->ph == ph)
+              {
+                     printf("Contact already exists!!\n");
+                     return start;
+              }
+
               ptr->rl = new_contact;
               new_contact->ll = ptr;
        }
@@ -105,22 +124,25 @@ CONTACT *search_name()
        }
        else
        {
+              int flag = 0;
               ptr = start;
-              while ((ptr != NULL) && (strcmp(strlwr(ptr->name), strlwr(name)) != 0))
+              printf("Contact Details:\n");
+              printf("------------------------------------------------------\n");
+              printf("%-30s%-20s%-30s\n", "Name", "Phone Number", "Email");
+              printf("------------------------------------------------------\n");
+              while (ptr != NULL)
               {
-                     ptr = ptr->rl;
+                     if (strcmp(strlwr(ptr->name), strlwr(name)) == 0)
+                     {
+                            flag = 1;
+                            printf("%-30s%-20lld%-30s\n", ptr->name, ptr->ph, ptr->email);
+                     }
+                      ptr = ptr->rl;
               }
-              if (ptr == NULL)
+              printf("------------------------------------------------------\n");                    
+              if (flag == 0)
               {
                      printf("No matches found\n");
-              }
-              else
-              {
-                     printf("Contact Details:\n");
-                     printf("------------------------------------------------------\n");
-                     printf("%-30s%-20s%-30s\n", "Name", "Phone Number", "Email");
-                     printf("------------------------------------------------------\n");
-                     printf("%-30s%-20lld%-30s\n", ptr->name, ptr->ph, ptr->email);
               }
        }
        return start;
@@ -253,7 +275,7 @@ CONTACT *update_name()
        else
        {
               ptr = start;
-              while ((ptr != NULL) && (strcmp((strlwr(ptr->name)), (strlwr(crr_name)))!= 0))
+              while ((ptr != NULL) && (strcmp((strlwr(ptr->name)), (strlwr(crr_name))) != 0))
               {
                      ptr = ptr->rl;
               }
@@ -294,8 +316,8 @@ jump3:
 jump4:
        printf("Enter the new phone number\n");
        scanf("%lld", &num);
-       int ctr=0;
-       long long int  n2=num;
+       int ctr = 0;
+       long long int n2 = num;
        while (n2 > 0)
        {
               n2 = n2 / 10;
@@ -337,7 +359,7 @@ CONTACT *update_contact()
 {
        system("cls");
        printf("What would you like to update\n");
-       printf("1.Name\n2.Phone no.\n3.Email id\n4.Exit\n");
+       printf("1.Name\n2.Phone no.\n3.Email id\n");
        int ch;
        printf("Enter your choice\n");
        scanf("%d", &ch);
